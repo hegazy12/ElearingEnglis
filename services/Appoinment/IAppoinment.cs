@@ -6,4 +6,5 @@ public interface IAppoinment
 {
    public Boolean Create(Guid Userid,CreateAppoinmentDTO dTO);
    public List<DTOAppoinment> GetPatientAppoinment(Guid idPatient);
+   public List<DTOAppoinment1> GetDoctorAppoinment(Guid idDoctor,DateOnly AppointmentDate);
 }

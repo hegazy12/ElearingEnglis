@@ -10,5 +10,4 @@ public interface IRgistration
   public bool verifyEmail(string email);
   public bool verifyPhone(string phone);
   public bool verifyPassword(string password);
-
 }

@@ -16,7 +16,7 @@ public class PatientController : ControllerBase
     {
         _IPatient = patient;
     }
-
+    
     [HttpPost]
     public bool Create(DTOPatientCreat creat)
     {
@@ -24,17 +24,17 @@ public class PatientController : ControllerBase
         Guid userid = Guid.Parse(userIdStr);
         return _IPatient.createPatient(userid,creat);
     }
-
+    
     [HttpGet("{numberpage:int}")]
     public List<DTOPatien> GetPatiensInPage(int numberpage)
     {
         return _IPatient.GetDTOPatiens(numberpage);
     }
-
+    
     [HttpGet("{id:guid}")]
     public DTOPatien GetPatien(Guid id)
     {
         return _IPatient.getPatient(id);
     }
-
+    
 }

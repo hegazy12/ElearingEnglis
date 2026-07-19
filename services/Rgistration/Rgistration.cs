@@ -22,9 +22,7 @@ public class Rgistration : IRgistration
             PhoneNumberConfirmed = true,
             EmailConfirmed = true
         };
-      
         var result = await _userManager.CreateAsync(newUser, user.Password);
-        
         return result;
     }
     

@@ -8,7 +8,7 @@ namespace ElearingEnglis.Controllers
 {
     [Route("api/[controller]/[action]")]
     [ApiController]
-    //[Authorize(Roles = "Admin,User")]
+    [Authorize(Roles = "Admin,User")]
     public class DrugController : ControllerBase
     {
         private readonly IDrugService _service;

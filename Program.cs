@@ -49,6 +49,10 @@ builder.Services.AddScoped<IDrugService, DrugService>();
 builder.Services.AddScoped<IVitalSignMasterRepo,VitalSignMasterRepo>();
 builder.Services.AddScoped<IVitalSignMasterService,VitalSignMasterService>();
 builder.Services.AddScoped<IDrugRepo, DrugRepo>();
+
+
+
+
 builder.Services.AddAuthentication(options =>
 {
     options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
@@ -56,9 +60,9 @@ builder.Services.AddAuthentication(options =>
     options.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
 }).AddJwtBearer(o =>
 {
-    o.RequireHttpsMetadata = false;
-    o.SaveToken = true;
-    o.TokenValidationParameters = new TokenValidationParameters
+     o.RequireHttpsMetadata = false;
+     o.SaveToken = true;
+     o.TokenValidationParameters = new TokenValidationParameters
     {
         ValidateIssuer = true,
         ValidateAudience = false,
@@ -72,16 +76,12 @@ builder.Services.AddAuthentication(options =>
     };
 });
 
+
+
 var MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
 
 builder.Services.AddCors(options =>
 {
-    // options.AddPolicy(MyAllowSpecificOrigins,
-    // policy =>
-    // {
-    //     policy.WithOrigins("http://localhost:4200").AllowAnyHeader().AllowAnyMethod();
-    // });
-    
 
     options.AddPolicy("AllowAll", policy =>
     {

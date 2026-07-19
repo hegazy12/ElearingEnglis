@@ -7,7 +7,7 @@ using System.Security.Claims;
 
 namespace ElearingEnglis.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/[controller]/[action]")]
     [ApiController]
     [Authorize(Roles = "Admin,User")]
     public class VitalSignMasterController : ControllerBase
@@ -26,8 +26,6 @@ namespace ElearingEnglis.Controllers
             Console.WriteLine(userid);
             var resposne = await _service.CreateVitalSignMasterAsync(userid, dto);
             return StatusCode(resposne.Success ? StatusCodes.Status201Created : StatusCodes.Status400BadRequest, resposne);
-
-
         }
     }
 }

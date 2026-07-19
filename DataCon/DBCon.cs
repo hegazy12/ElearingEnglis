@@ -15,6 +15,8 @@ public class DBCon : IdentityDbContext
     public DbSet<Prescription> prescriptions {get; set;}    
     public DbSet<VitalSignMaster> VitalSignMaster { get; set;}
     public DbSet<VitalSign>VitalSigns { get; set;}
+    public DbSet<Diagnos> Diagnoses { get; set; }
+    public DbSet<queueMQ> queueMQs { get; set; }
 
     public DBCon(DbContextOptions<DBCon> options) : base(options){}
   

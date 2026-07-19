@@ -5,6 +5,8 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using ElearingEnglis.services.Doctor.DTO;
 using NuGet.Protocol;
+using ElearingEnglis.services.Patient.DTO;
+
 namespace ElearingEnglis.services.Appoinment;
 public class SAppoinment:IAppoinment
 {
@@ -71,6 +73,34 @@ public List<DTOAppoinment> GetPatientAppoinment(Guid idPatient)
         Id =i.Id
         });
     }
+    return Result;
+}
+
+public List<DTOAppoinment1> GetDoctorAppoinment(Guid idDoctor , DateOnly AppointmentDate)
+{
+    var doctor = _context.doctors.Find(idDoctor);
+    
+    var Appoinments = _context.appointments.Where(m => m.Doctor == doctor && m.AppointmentDate == AppointmentDate).Include(m=> m.Patient).OrderBy(m => m.CreatedAt).ToList();
+    
+    List<DTOAppoinment1> Result = new List<DTOAppoinment1>();
+    
+    DataCon.Module.Patient P = null;
+    
+    foreach (var i in Appoinments)
+    {
+      P = _context.patients.Where(m=> m.Id == i.Patient.Id).First();
+      
+      Result.Add(new DTOAppoinment1 ()
+      {
+        AppoinmentDate = i.AppointmentDate ,
+        Deposit = i.Deposit , 
+        Patient = new DTOPatientCreat(){FristName = P.FristName , LastName= P.LastName , Phone = P.Phone },
+        note = i.Notes,
+        PatientId = i.PatientId,
+        Id =i.Id
+        });
+    }
+
     return Result;
 }
 }

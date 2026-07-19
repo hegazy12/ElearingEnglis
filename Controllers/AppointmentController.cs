@@ -31,4 +31,11 @@ public class AppointmentController : ControllerBase
     {
         return _SAppoinment.GetPatientAppoinment(Patient);
     }
+
+    [HttpGet("{Doctor:guid}/{AppointmentDate}")]
+    public List<DTOAppoinment1> GetDoctorAppoinments(Guid Doctor, DateOnly AppointmentDate)
+    {
+        return _SAppoinment.GetDoctorAppoinment(Doctor, AppointmentDate);
+    }
+    
 }
